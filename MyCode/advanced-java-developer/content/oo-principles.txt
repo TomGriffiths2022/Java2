@@ -1,0 +1,28 @@
+OO Principles
+-------------
+- Abstraction, Encapsulation, Inheritance, Polymorphism*
+
+- Abstraction:
+  - the division of code into meaningful blocks and naming those blocks
+  - the divisions may be methods and or classes 
+  - think of the car analogy - you don't have to know how an engine works to drive a car 
+  - naming is key:
+    - I should not have to look at the code in a method to know what it does
+    - there is no excuse for abbreviated variable, method, or class names
+    - there is no excuse for variable names that are prefixed with data type info
+    - we should think long and hard about names
+
+- Encapsulation:
+  - restricting access to classes and class members (via access modifiers)
+  - private fields and public methods (too simplisitic)
+  - everything that goes into a class definitively belongs there (could be classed as abstraction)
+
+- Inheritance:
+  - the inheriting of state and behaviour by one class from another
+  - it is often used to avoid duplicating code 
+  - ideally we should not change working code, instead we should add new code (via inheritance)
+
+- Polymorphism:
+  - many forms
+  - one object can be of many classes at once
+  - it is a by-product of inheritance

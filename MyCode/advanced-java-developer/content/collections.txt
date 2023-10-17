@@ -1,0 +1,44 @@
+Java Collections
+----------------
+- Collections exist inside the java.util package of the std lib.
+- There are two main interfaces - Collection and Map
+- List:
+  - is a subinterface of Collection
+  - is indexed 
+  - is ordered
+  - accept duplicates
+- List implementations:
+  - ArrayList: backed by an array; better for getting & setting than for adding & removing
+  - LinkedList: backed by a series of objects that ref one another; better for adding & removing
+  - Vector: thread-safe but slow; old-school
+- Set:
+  - is a subinterface of Collection 
+  - does not permit duplicates 
+  - NB: whether a Set works as intended may depend on whether the class of object overrides hashCode and equals
+  - are not typically indexed
+  - are not typically ordered
+- Set implementations:
+  - HashSet: uses hashing to determine the position of the element in an underlying array
+  - SortedSet: each element comes out in the order it went in
+- Queue:
+  - is a subinterface of Collection
+  - are typically FIFO (first in first out)
+  - methods commonly named push and pop
+  - bounded (a fixed capacity) or unbounded (an limited capacity)
+  - blocking (will block the thread if full/empty) or non-blocking (will throw exceptions if full/empty)
+  - may be double-ended (e.g. Deque) i.e. you can push & pop from both ends
+- Queue implementations:
+  - ArrayBlockingQueue
+  - LinkedList
+  - PriorityQueue
+- Map:
+  - is NOT a subinterface of Collection
+  - a group of key value pairs
+  - individual values are retrieved via their key, not an index
+  - keys MUST be unique; duplicate keys will result in the overwriting of values
+  - values need not be unique 
+  - keys and values together are known as entries
+- Map implementations:
+  - HashMap: uses hashing to determine the position of the element in an underlying array
+  - TreeMap: a sorted Map 
+  - Hashtable: old-school

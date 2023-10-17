@@ -1,0 +1,46 @@
+Day 1 Quiz
+----------
+1. Why is naming so important?
+   Makes the code less ambiguous
+   There's no reason to use abbreviations
+
+2. How does one make changes to an app without modifying existing code?
+   By extending existing classes (you may use interfaces)
+   Classes ought to be associated via composition
+
+3. What is polymorphism?
+   Many forms
+   One object; many classes/types
+   e.g.:
+   class HGV extends Vehicle {}
+   class Motorbike extends Vehicle {}
+   class Licence {
+     Vehicle vehicle;
+     Licence(Vehicle vehicle) {
+       this.vehicle = vehicle;
+     }
+   }
+
+4. What is the purpose of a generic class/method?
+   To have classes/methods that can deal with a variety of types without losing type info
+
+5. How does one make a method generic?
+   Add a type parameter before the return type - <T>
+
+6. When is a generic class's type parameter replaced by a real type?
+   It could be when you extend the class
+   It could be when you instantiate the class
+
+7. Is a hashing collection/map ordered?
+   NO
+
+8. What is the main difference between a List and a Set?
+   A List can contain duplicates, a Set cannot
+
+9. What can we say about a Queue that is double-ended, bound, and blocking?
+   Elements can be added/removed from either end
+   It has a fixed size
+   Attempts to add to a full queue/remove from an empty queue will block the thread
+
+10. Under what circs might you choose a Map over a List?
+    When you want to fetch elements using a meaningful key
