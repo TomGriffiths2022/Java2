@@ -1,5 +1,6 @@
 package org.example.shoppingcart;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -43,6 +44,10 @@ public class Cart {
 
     public Set<String> getProducts() {
         return items.keySet();
+    }
+
+    public Map<String, Integer> getItems() {
+        return Collections.unmodifiableMap(items);
     }
 
 }

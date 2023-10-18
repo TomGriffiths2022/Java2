@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class MovieStore {
 
@@ -41,13 +42,34 @@ public class MovieStore {
         throw new NoSuchMovieException();
     }
 
-    public List<Movie> findMoviesByPartialTitle(String partialTitle) {
+    private List<Movie> findMoviesBy(Predicate<Movie> predicate) {
         var matchingMovies = new LinkedList<Movie>();
         for (var movie : movies) {
-            if (movie.getTitle().toLowerCase().contains(partialTitle.toLowerCase())) {
+            if (predicate.test(movie)) {
                 matchingMovies.add(movie);
             }
         }
         return matchingMovies;
+    }
+
+    public List<Movie> findMoviesByPartialTitle(String partialTitle) {
+        return findMoviesBy(movie -> movie.getTitle().toLowerCase().contains(partialTitle.toLowerCase()));
+    }
+
+    public List<Movie> findMoviesByGenre(String genre) {
+        return findMoviesBy(movie -> movie.getGenre().equalsIgnoreCase(genre));
+    }
+
+    public List<Movie> findMoviesByReleaseYearInRange(int startYearInclusive, int endYearExclusive) {
+        return findMoviesBy(movie -> movie.getReleaseYear() >= startYearInclusive &&
+                movie.getReleaseYear() < endYearExclusive);
+    }
+
+    public List<Movie> findMoviesByGenreAndReleaseYearInRange(String genre, int startYearInclusive, int endYearExclusive) {
+        return findMoviesBy(movie -> {
+           return movie.getGenre().equalsIgnoreCase(genre) &&
+                   movie.getReleaseYear() >= startYearInclusive &&
+                   movie.getReleaseYear() < endYearExclusive;
+        });
     }
 }
