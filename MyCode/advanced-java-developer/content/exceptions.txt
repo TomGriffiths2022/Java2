@@ -1,0 +1,21 @@
+Exceptions
+----------
+- What is an exception? 
+  Something different from the norm./something unexpected
+  The code is messed up
+  It interrupts the normal flow of the code 
+  An object that contains info about something that went wrong
+  Represents an error - something has gone wrong
+
+- Differntiate between checked and unchecked exceptions
+  A checked exception:
+  - The compiler will FORCE you to handle it 
+  - Results from errors that are beyond your control
+  - Just becuase the error is beyond your control does NOT mean you should not anticipate it
+  - An anticipatable error that is beyond your control
+  - e.g. FileNotFoundException, SQLException, etc.
+  An unechecked exception:
+  - The compiler is not involved (you will not be forced to handle it)
+  - Results from errors that are your fault (coding mistakes)*
+  * There are many Java frameworks that deliberately throw unchecked exceptions
+  - e.g. NullPointerException, ArrayIndexOutOfBoundsException, etc.

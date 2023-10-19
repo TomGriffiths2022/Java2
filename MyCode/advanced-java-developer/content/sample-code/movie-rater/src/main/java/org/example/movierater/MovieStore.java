@@ -1,7 +1,6 @@
 package org.example.movierater;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -43,13 +42,7 @@ public class MovieStore {
     }
 
     private List<Movie> findMoviesBy(Predicate<Movie> predicate) {
-        var matchingMovies = new LinkedList<Movie>();
-        for (var movie : movies) {
-            if (predicate.test(movie)) {
-                matchingMovies.add(movie);
-            }
-        }
-        return matchingMovies;
+        return movies.stream().filter(predicate).toList();
     }
 
     public List<Movie> findMoviesByPartialTitle(String partialTitle) {

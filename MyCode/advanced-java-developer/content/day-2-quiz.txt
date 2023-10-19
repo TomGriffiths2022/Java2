@@ -1,0 +1,38 @@
+Day 2 Quiz
+----------
+1. Every class inherits from which other class unless specified otherwise?
+   java.lang.Object
+
+2. What is the purpose of the equals method?
+   To test two objects are equal (in terms of content)
+
+3. Why must the hashCode and equals methods be overridden together?
+   Hashing collections require both methods are overridden
+
+4. How does one pass code around in Java?
+   By placing the code in a method in a class and then passing an instance of that class
+
+5. How does one change the behaviour of a method without modifying it?
+   By exploiting inheritance
+
+6. What is a functional interface?
+   An interface with only one abstract method
+
+7. How does one create an anonymous implementation of an interface?
+   interface MyInterface { void go(); }
+   var myInterface = new MyInterface() {
+     // anon. implementation goes here
+     @Override
+     public void go() {
+       // TODO
+     }
+   }
+
+8. What is a lambda expression?
+   An instance of an anon. implementation of a functional interface
+
+9. What form does a lambda expression take?
+   var myInterface = () -> { System.out.println("Going!"); };
+
+10. Under what circs can a lambda expression be used?
+    Only where a functional interface is expected
