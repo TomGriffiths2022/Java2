@@ -1,7 +1,7 @@
-package org.example.movierater;
+package org.example.mymovierater;
 
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -9,9 +9,17 @@ import java.util.function.Predicate;
 public class MovieStore {
 
     private Set<Movie> movies;
+    private MovieRepo repo;
 
-    public MovieStore() {
+    private MovieStore(MovieRepo repo) {
+        this.repo = repo;
         this.movies = new HashSet<>();
+    }
+
+    public static MovieStore getInstance(MovieRepo repo) throws PersistenceException {
+        var store = new MovieStore(repo);
+        store.movies = repo.getMovies();
+        return store;
     }
 
     private long getNextId() {

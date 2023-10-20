@@ -1,4 +1,4 @@
-package org.example.movierater;
+package org.example.mymovierater;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,11 +1,36 @@
 package org.example.streams;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Team {
-    public void addPlayers(Player player, Player player1, Player player2) {
+
+    private String name;
+    private List<Player> players;
+
+    public Team(String name) {
+        this.name = name;
+        this.players = new ArrayList<>();
     }
 
-    public Arrays getPlayers() {
+    public void addPlayers(Player... players) {
+        this.players.addAll(Arrays.asList(players));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 }

@@ -8,9 +8,17 @@ import java.util.function.Predicate;
 public class MovieStore {
 
     private Set<Movie> movies;
+    private MovieRepo repo;
 
-    public MovieStore() {
+    private MovieStore(MovieRepo repo) {
+        this.repo = repo;
         this.movies = new HashSet<>();
+    }
+
+    public static MovieStore getInstance(MovieRepo repo) throws PersistenceException {
+        var store = new MovieStore(repo);
+        store.movies = repo.getMovies();
+        return store;
     }
 
     private long getNextId() {
