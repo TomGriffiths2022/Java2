@@ -1,0 +1,47 @@
+Day 3 Quiz
+----------
+1. With regards functional programming, what is a transformation?
+   To create something new from something existing (the existing thing is unchanged)
+
+2. What effect does final have on a variable/field declaration?
+   It makes the variable/field unmodifiable (the variable/field can't be reassigned)
+   final String[] names = new String[] {"Tom", "Dick", "Harry"};
+   names = new String[5]; // compilation error
+   names[1] = "Richard";  // OK
+
+3. Why is immutable data a good fit for functional programming?
+   Because functional programming is about transformations; we don't want to modify the data
+
+4. Describe the one abstract method of the Consumer functional interface.
+   The method is called accept
+   It accepts a T 
+   It returns nothing
+
+5. Produce a lambda implementation of Function<Double, BigDecimal>.
+   Function<Double, BigDecimal> function1 = aDouble -> BigDecimal.valueOf(aDouble);
+   Function<Double, BigDecimal> function2 = BigDecimal::valueOf;
+
+6. What is the purpose of a java.util.stream.Stream?
+   To transform a collection in a declarative way
+
+7. What type of object does the filter intermediate operator accept?
+   Predicate
+
+8. What is returned by an intermediate operator and why?
+   A Stream because it enables the chaining of operators together
+
+9. Name two terminal operators.
+   forEach 
+   toList
+   count
+   sum
+   min
+   max
+
+10. Differentiate between a checked and unchecked exception.
+    The compiler will force you to handle checked exceptions
+    Checked exceptions result from errors beyond your control but that are anticipatable
+    The compiler will NOT force you to handle unchecked exceptions
+    Traditionally unchecked exceptions result from mistakes in the code
+    Modern Java frameworks, like Spring, only ever throw unchecked exceptions...
+    This means that we may have to code try catch blocks even when the compiler doesn't force us to

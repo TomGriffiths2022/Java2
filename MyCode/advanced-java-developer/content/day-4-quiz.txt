@@ -1,0 +1,40 @@
+Day 4 Quiz
+----------
+1. How does concurrency differ from parallelism?
+   Concurrency is the illusion of parallelism (the CPU switching between tasks very quicly)
+
+2. Differentiate between the stack and heap portions of Java memory.
+   The heap contains objects
+   The stack contains methods currently in execution and their local variables
+
+3. How does a thread differ from a process?
+   A thread typically executes only a subset of the total program code 
+   A process may be composed of many threads 
+   Each thread gets its own stack but all threads share the heap
+
+4. How does one make a class threadable?
+   By extending Thread 
+   By implementing Runnable (preferred)
+
+5. What happens when a Thread object's start method is called?
+   Java requests that the thread is scheduled by the OS 
+   Ultimately it's up to the OS to call the thread's run method at some point in the future
+
+6. Is it possible to control the order of execution/time allocated to threads?
+   NO
+
+7. Is it possible to have one thread wait for another to complete?
+   Yes (by calling join on the Thread object)
+   NB a blocked/sleeping thread may be interrupted
+
+8. Why is sharing data between threads risky?
+   The shared data may be corrupted (e.g. the one thread writes y before the other thread writes x)
+
+9. How does one determine if a class is not thread-safe?
+   Many threads sharing one object is a sign of potential trouble
+   Instance fields that are non-final and that reference mutable objects
+   A field that is both final and immutable is thread-safe
+
+10. How does one spawn a thread using an ExecutorService?
+    var executor = ExecutorService.newFixedThreadPool(10);
+    executor.execute(() -> someWork());

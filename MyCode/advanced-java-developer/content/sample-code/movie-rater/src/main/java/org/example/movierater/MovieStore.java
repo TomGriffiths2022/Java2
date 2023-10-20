@@ -10,15 +10,11 @@ public class MovieStore {
     private Set<Movie> movies;
     private MovieRepo repo;
 
-    private MovieStore(MovieRepo repo) {
+    // TODO we need to handle or remove Movie IDs
+
+    public MovieStore(MovieRepo repo) {
         this.repo = repo;
         this.movies = new HashSet<>();
-    }
-
-    public static MovieStore getInstance(MovieRepo repo) throws PersistenceException {
-        var store = new MovieStore(repo);
-        store.movies = repo.getMovies();
-        return store;
     }
 
     private long getNextId() {
@@ -49,28 +45,32 @@ public class MovieStore {
         throw new NoSuchMovieException();
     }
 
-    private List<Movie> findMoviesBy(Predicate<Movie> predicate) {
+    private List<Movie> filterMoviesBy(Predicate<Movie> predicate) {
         return movies.stream().filter(predicate).toList();
     }
 
-    public List<Movie> findMoviesByPartialTitle(String partialTitle) {
-        return findMoviesBy(movie -> movie.getTitle().toLowerCase().contains(partialTitle.toLowerCase()));
+    public List<Movie> findMoviesByPartialTitle(String partialTitle) throws PersistenceException {
+        this.movies = repo.getMoviesByPartialTitle(partialTitle);
+        return movies.stream().toList();
     }
 
-    public List<Movie> findMoviesByGenre(String genre) {
-        return findMoviesBy(movie -> movie.getGenre().equalsIgnoreCase(genre));
+    public List<Movie> findMoviesByGenre(String genre) throws PersistenceException {
+        this.movies = repo.getMoviesByGenre(genre);
+        return movies.stream().toList();
     }
 
-    public List<Movie> findMoviesByReleaseYearInRange(int startYearInclusive, int endYearExclusive) {
-        return findMoviesBy(movie -> movie.getReleaseYear() >= startYearInclusive &&
+    public List<Movie> filterMoviesByReleaseYearInRange(int startYearInclusive, int endYearExclusive) {
+        return filterMoviesBy(movie -> movie.getReleaseYear() >= startYearInclusive &&
                 movie.getReleaseYear() < endYearExclusive);
     }
 
-    public List<Movie> findMoviesByGenreAndReleaseYearInRange(String genre, int startYearInclusive, int endYearExclusive) {
-        return findMoviesBy(movie -> {
+    public List<Movie> filterMoviesByGenreAndReleaseYearInRange(String genre, int startYearInclusive, int endYearExclusive) {
+        return filterMoviesBy(movie -> {
            return movie.getGenre().equalsIgnoreCase(genre) &&
                    movie.getReleaseYear() >= startYearInclusive &&
                    movie.getReleaseYear() < endYearExclusive;
         });
     }
+
+    // TODO add more filter methods
 }
