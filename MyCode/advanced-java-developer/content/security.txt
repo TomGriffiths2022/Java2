@@ -1,0 +1,21 @@
+Java Security
+-------------
+Securing Objects
+- limit accessibility; start by making everything private; use ALL the access modifiers
+- restrict extensibility; mark your classes/methods as final; use sealed classes
+- make your constructors private if appropriate; make sure the object is created in the right way
+
+Injection & Validation
+- don't use JDBC Statements; use only PreparedStatement
+- don't allow invalid or corrupt data into your app; write lots of tests
+
+Confidential Info
+- don't use toString() or at least carefully inspect what is generated
+- use char[] (is GC'd) instead of String (is GC'd)
+- set sensitive data fields/variables to null when you're done with them
+- take care with logs and sysouts; use assert instead, e.g. assert x > 0;
+
+Denial of Service
+- don't leak resources; use try with resources
+- avoid reading very large files 
+- don't let the caller dictate the size of your collections

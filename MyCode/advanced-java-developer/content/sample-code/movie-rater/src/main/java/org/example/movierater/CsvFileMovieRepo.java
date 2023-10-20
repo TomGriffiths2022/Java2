@@ -9,24 +9,25 @@ import java.util.function.Predicate;
 
 public class CsvFileMovieRepo implements MovieRepo {
 
+    // TODO we need to handle or remove Movie IDs
+
     private String filename;
+    private MovieFieldIndices indices;
 
-    /*
-     * TODO we have hard-coded column indicies which are fragile and non future-proof
-     * TODO we need to handle or remove Movie IDs
-     */
+    private static final String CSV_DELIMITER = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
-    public CsvFileMovieRepo(String filename) {
+    public CsvFileMovieRepo(String filename, MovieFieldIndices indices) {
         this.filename = filename;
+        this.indices = indices;
     }
 
     // TODO think about moving this into Movie as a static factory
     private Movie csvLineToMovie(String csvLine) {
-        var parts = csvLine.split(",");
-        // var id = Long.parseLong(parts[0]);
-        var title = parts[1];
-        var genre = parts[5];
-        var releaseYear = Integer.parseInt(parts[2]);
+        var parts = csvLine.split(CSV_DELIMITER, -1);
+        // var id = Long.parseLong(parts[mapper.getIdFieldIndex()]);
+        var title = parts[indices.getTitleIndex()];
+        var genre = parts[indices.getGenreIndex()];
+        var releaseYear = Integer.parseInt(parts[indices.getReleaseYearIndex()]);
         var movie = new Movie(title, genre, releaseYear);
         // movie.setId(id);
         return movie;
@@ -51,8 +52,8 @@ public class CsvFileMovieRepo implements MovieRepo {
     @Override
     public Set<Movie> getMoviesByPartialTitle(String partialTitle) throws PersistenceException {
         return getMoviesBy(line -> {
-             var parts = line.split(",");
-             var title = parts[1];
+             var parts = line.split(CSV_DELIMITER, -1);
+             var title = parts[indices.getTitleIndex()];
              return title.toLowerCase().contains(partialTitle.toLowerCase());
         });
     }
@@ -60,8 +61,8 @@ public class CsvFileMovieRepo implements MovieRepo {
     @Override
     public Set<Movie> getMoviesByGenre(String targetGenre) throws PersistenceException {
         return getMoviesBy(line -> {
-            var parts = line.split(",");
-            var genre = parts[5];
+            var parts = line.split(CSV_DELIMITER, -1);
+            var genre = parts[indices.getGenreIndex()];
             return genre.equalsIgnoreCase(targetGenre);
         });
     }

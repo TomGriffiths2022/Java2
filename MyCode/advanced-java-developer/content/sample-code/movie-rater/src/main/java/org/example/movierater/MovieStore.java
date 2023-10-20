@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 
 public class MovieStore {
 
+    // TODO we need to handle or remove Movie IDs
+
     private Set<Movie> movies;
     private MovieRepo repo;
-
-    // TODO we need to handle or remove Movie IDs
 
     public MovieStore(MovieRepo repo) {
         this.repo = repo;
